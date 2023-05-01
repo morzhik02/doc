@@ -42,19 +42,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/api/home").permitAll();
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
-        customAuthenticationFilter.setFilterProcessesUrl("/api/login");
+//        customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         http.csrf().disable();
         http.cors().disable();
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 
-        http.authorizeRequests()
-                .antMatchers(GET, "/api/login/**",  "/api/token/refresh/**").permitAll()
-                .antMatchers(GET, "/api/user/**").hasAnyAuthority("ADMIN")
-                .antMatchers(POST, "/api/user/save/**").hasAnyAuthority("ADMIN")
-                .antMatchers(POST, "/api/role/save/**").hasAnyAuthority("ADMIN")
-                .antMatchers(POST, "/api/doc/**").hasAnyAuthority("ADMIN");
+//        http.authorizeRequests()
+//                .antMatchers(GET, "/api/login/**",  "/api/token/refresh/**").permitAll()
+//                .antMatchers(GET, "/api/user/**").hasAnyAuthority("ADMIN")
+//                .antMatchers(POST, "/api/user/save/**").hasAnyAuthority("ADMIN")
+//                .antMatchers(POST, "/api/role/save/**").hasAnyAuthority("ADMIN")
+//                .antMatchers(POST, "/api/doc/**").hasAnyAuthority("ADMIN");
 //                .antMatchers(GET, "/api/home/**").permitAll()
 //                .anyRequest().authenticated();
 
