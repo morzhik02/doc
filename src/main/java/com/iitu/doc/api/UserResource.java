@@ -39,11 +39,11 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class UserResource {
     UserService userService;
 //    RoleToUserForm roleToUserForm;
-
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers(){
-        return ResponseEntity.ok().body(userService.getUsers());
-    }
+//
+//    @GetMapping("/users")
+//    public ResponseEntity<List<User>> getUsers(){
+//        return ResponseEntity.ok().body(userService.());
+//    }
 
     @PostMapping("/user/save")
     public ResponseEntity<User> saveUser(@RequestBody User user){
@@ -57,11 +57,11 @@ public class UserResource {
         return ResponseEntity.created(uri).body(userService.saveRole(role));
     }
 
-    @PostMapping("/role/assignRole")
-    public ResponseEntity<?> assignRole(@RequestBody RoleToUserForm roleToUserForm){
-        userService.assignRole(roleToUserForm.getUsername(), roleToUserForm.getRoleName());
-        return ResponseEntity.ok().build();
-    }
+//    @PostMapping("/role/assignRole")
+//    public ResponseEntity<?> assignRole(@RequestBody RoleToUserForm roleToUserForm){
+//        userService.assignRole(roleToUserForm.getUsername(), roleToUserForm.getRoleName());
+//        return ResponseEntity.ok().build();
+//    }
 
     @GetMapping("/token/refresh")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -73,7 +73,7 @@ public class UserResource {
                 JWTVerifier verifier = JWT.require(algorithm).build();
                 DecodedJWT decodedJWT = verifier.verify(refreshToken);
                 String username = decodedJWT.getSubject();
-                User user = userService.getUser(username);
+                User user = userService.findByUsername(username);
                 String accessToken = JWT.create()
                         .withSubject(user.getUsername())
                         .withExpiresAt(new Date(System.currentTimeMillis() + 10*60*1000))

@@ -17,7 +17,7 @@ import java.util.Collection;
 @FieldNameConstants
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "users")
-public class User extends BaseEntity{
+public class User extends AuditableEntity {
     String username;
     String name;
     String password;

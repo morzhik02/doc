@@ -13,6 +13,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "roles")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Role extends BaseEntity{
+public class Role extends AuditableEntity{
     String name;
 }
