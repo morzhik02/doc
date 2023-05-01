@@ -17,13 +17,31 @@ import org.springframework.context.annotation.Configuration;
         scheme = "bearer"
 )
 public class SwaggerConfig {
-    @Bean
-    public OpenAPI openAPI() {
-        return new OpenAPI()
-                .info(new Info().title("document workflow API")
-                        .description("desc")
-                        .version("v1.0.0").license(new License().name("Apache 2.0")
-                                .url("http://springdoc.org")).contact(new Contact().name("Miras Madiyev")
-                                .email("27677@iitu.edu.kz")));
-    }
+//    @Bean
+//    public Docket api() {
+//        return new Docket(DocumentationType.SWAGGER_2)
+//                .select()
+//                .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
+//                .paths(PathSelectors.any())
+//                .build()
+//                .apiInfo(apiInfo());
+//    }
+//
+//    private ApiInfo apiInfo() {
+//        return new ApiInfoBuilder()
+//                .title("My API")
+//                .description("Some description")
+//                .version("1.0")
+//                .build();
+//    }
+@Bean
+public OpenAPI openAPI() {
+    return new OpenAPI()
+            .info(new Info().title("CitizenGuard service API")
+                    .description("Izteleu Marzhan, Tolshina Victoria Diploma Work")
+                    .version("v1.0.0").license(new License().name("Apache 2.0")
+                            .url("http://springdoc.org")).contact(new Contact().name("Izteleu Marzhan")
+                            .email("27488@iitu.edu.kz")));
+}
+
 }
