@@ -53,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(POST, "/api/user/save/**").hasAnyAuthority("ADMIN")
                 .antMatchers(POST, "/api/role/save/**").hasAnyAuthority("ADMIN")
                 .antMatchers(POST, "/api/doc/**").hasAnyAuthority("ADMIN")
+                .antMatchers(GET, "/api/home/**").permitAll()
                 .anyRequest().authenticated();
 
 //        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
