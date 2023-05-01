@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,7 @@ public class HomeResource {
 
     @GetMapping
     @Operation(summary = "Method to get home page")
-    public String home(){
-        return "HELLO";
+    public ResponseEntity<String> home(){
+        return ResponseEntity.ok("HELLO");
     }
 }

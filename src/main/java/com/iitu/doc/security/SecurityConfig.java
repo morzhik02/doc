@@ -40,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/api/home").permitAll();
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         http.csrf().disable();
@@ -47,14 +48,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
+
         http.authorizeRequests()
                 .antMatchers(GET, "/api/login/**",  "/api/token/refresh/**").permitAll()
                 .antMatchers(GET, "/api/user/**").hasAnyAuthority("ADMIN")
                 .antMatchers(POST, "/api/user/save/**").hasAnyAuthority("ADMIN")
                 .antMatchers(POST, "/api/role/save/**").hasAnyAuthority("ADMIN")
-                .antMatchers(POST, "/api/doc/**").hasAnyAuthority("ADMIN")
-                .antMatchers(GET, "/api/home/**").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers(POST, "/api/doc/**").hasAnyAuthority("ADMIN");
+//                .antMatchers(GET, "/api/home/**").permitAll()
+//                .anyRequest().authenticated();
 
 //        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
 //        customAuthenticationFilter.setFilterProcessesUrl("/api/login");
